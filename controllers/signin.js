@@ -21,7 +21,7 @@ async function InsertVerifyUser(name, email, password){
             token:token
          })
 
-         const activationLink = `https://6579fb478d5b584f69a2357e--poetic-pasca-925a80.netlify.app/signin/succ/${token}`;
+         const activationLink = `https://657a0127cad1f352e1ebb969--poetic-pasca-925a80.netlify.app/signin/succ/${token}`;
         const content = `<h4> hi,there</h4>
         <h5>Welconme to the app</h5>
         <p>Thenk you for signing up. Click on the below link to activate</p>
