@@ -21,7 +21,7 @@ async function InsertVerifyUser(name, email, password){
             token:token
          })
 
-         const activationLink = `https://auth-backend-jd59.onrender.com/signin/${token}`;
+         const activationLink = `http://localhost:5173/signin/succ/${token}`;
         const content = `<h4> hi,there</h4>
         <h5>Welconme to the app</h5>
         <p>Thenk you for signing up. Click on the below link to activate</p>
@@ -60,12 +60,13 @@ async function InsertSignUpUser(token) {
        <p>Regards</p>
        <p>Team</p>`;
        sendMail(newUser.email,"Registeration successful",content);
-
-       return `<h4> hi,there</h4>
+ 
+      return `<h4> hi,there</h4>
        <h5>Welconme to the app</h5>
        <p> you are successfully registered </p>
        <p>Regards</p>
        <p>Team</p>`;
+      
    }
 
    return `<h4> Registeration Failed</h4>

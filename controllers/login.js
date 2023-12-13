@@ -9,7 +9,7 @@ dotenv.config();
 async function CheckUser(email){
   try{
      const user = await User.findOne({ email: email });
-     console.log(user);
+    
      if (user) {
         return true;
      }
@@ -23,9 +23,9 @@ return "server Busy";
 async function AuthenticateUser(email, password){
     try{
       const userCheck = await User.findOne({ email:email });
-      console.log(userCheck);
+      
       const validPassword = await bcrypt.compare(password,userCheck.password);
-      console.log(validPassword);
+      
       if(validPassword){
            const token = jwt.sign({email},process.env.login_secret_token);
            const response = {
@@ -53,15 +53,16 @@ async function AuthenticateUser(email, password){
 async function AuthorizeUser(token){
   try{
     const decodedToken = jwt.verify(token, process.env.login_secret_token);
+   
     if(decodedToken) {
       const email = decodedToken.email;
-      console.log(email);
+      
       const auth = await client.get(`key-${email}`);
-      console.log(auth);
+      
       if (auth){
         const data = JSON.parse(auth)
          
-        return data
+        return data 
         
       } else {
         const data = await User.findOne({email: email})
@@ -76,5 +77,8 @@ async function AuthorizeUser(token){
 
 
 
+
+ 
+ 
 
 module.exports = { CheckUser,AuthenticateUser, AuthorizeUser };

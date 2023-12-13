@@ -18,10 +18,7 @@ const  userSchema = new mongoose.Schema({
         type: String,
         default:Date.now()
     },
-    forgetPassword:{
-        time:Date,
-        otp:String,
-    },
+     
     token:{
         type:String,
         

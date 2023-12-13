@@ -3,7 +3,7 @@ const { CheckUser } = require("../controllers/login");
 const { InsertVerifyUser,InsertSignUpUser } = require("../controllers/signin")
 const router = express.Router();
 
-router.get("/:token", async (req,res)=>{
+router.get("/succ/:token", async (req,res)=>{
 try{
     const response = await InsertSignUpUser(req.params.token)
     res.status(200).send(response);
@@ -26,7 +26,7 @@ try{
 router.post("/verify", async (req,res)=>{
     try{
         const { name, email , password } = await req.body;
-        console.log(name, password, email);
+     
     const registerCredentials = await CheckUser(email);
     if(registerCredentials === false) {
          await InsertVerifyUser(name, email, password);

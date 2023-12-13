@@ -5,7 +5,7 @@ dotenv.config();
 
 const redisClient = () =>{
     return redis.createClient({
-       url:process.env.redis_url,
+    //    url:process.env.redis_url,
     })
 }
 

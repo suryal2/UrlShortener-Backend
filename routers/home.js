@@ -8,7 +8,7 @@ router.get("/", async (req,res)=>{
     const auth_token = await req.headers.authorization;
   
     const loginCredentials = await AuthorizeUser(auth_token);
-    console.log(loginCredentials)
+   
     if(loginCredentials === false){
         res.status(200).send("Invalid Token")
     } else{
