@@ -22,7 +22,7 @@ console.log("users",user)
      const token = jwt.sign({id: user._id},process.env.forgot_secret_token)
 
     const update = await User.findOneAndUpdate({email: user.email}, {$set: { token:token }},{new:true});
-       const resetLink = `http://localhost:5173/reset-password/${user._id}/${token}`
+       const resetLink = `https://urlshort-zsjx.onrender.com/reset-password/${user._id}/${token}`
 
      const content = `${resetLink}`
      sendMail(email,"Reset your password",content)

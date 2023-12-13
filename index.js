@@ -30,6 +30,6 @@ app.use("/Url",isAuthorized,  urlRouter );
 app.use("/shorturlRedirect" ,  shorturlRedirectRouter );
 
 app.listen(PORT,()=>{
-    console.log(`App listening on PORT:${PORT}`);
+    console.log(`App listenings on PORT:${PORT}`);
 }) 
 

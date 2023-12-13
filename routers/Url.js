@@ -14,7 +14,7 @@ router.post('/urls', async (req, res) => {
     const longUrl = await Url.findOne(   {shortId: shortId}  ); 
     const dailyCount = await calculateDailyCountAndSave(); 
     const monthlyCount = await calculateMonthlyCount(); 
-    const shortUrl = `http://localhost:4002/shorturlRedirect/${shortId}`; 
+    const shortUrl = `https://urlshort-zsjx.onrender.com/shorturlRedirect/${shortId}`; 
     res.json({ shortUrl, dailyCount,monthlyCount });
   } catch (error) {
     res.status(400).send(error);
