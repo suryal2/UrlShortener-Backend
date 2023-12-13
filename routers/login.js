@@ -1,17 +1,9 @@
 const express = require("express");
 const { AuthenticateUser } = require("../controllers/login");
-const client = require("../redis");
+ 
 const router = express.Router();
 
-client
-.connect()
-.then(()=>{
-   console.log("connected to redis in login");
-})
-.catch((e)=>{
-   console.log(e);
-});
-
+ 
 
 
 
