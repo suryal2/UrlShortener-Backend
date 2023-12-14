@@ -14,7 +14,7 @@ router.post('/urls', async (req, res) => {
     const longUrl = await Url.findOne(   {shortId: shortId}  ); 
     const dailyCount = await calculateDailyCountAndSave(); 
     const monthlyCount = await calculateMonthlyCount(); 
-    const shortUrl = `https://657a0127cad1f352e1ebb969--poetic-pasca-925a80.netlify.app/shorturlRedirect/${shortId}`; 
+    const shortUrl = `https://urlshort-zsjx.onrender.com/shorturlRedirect/${shortId}`; 
     res.json({ shortUrl, dailyCount,monthlyCount });
   } catch (error) {
     res.status(400).send(error);
