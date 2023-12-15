@@ -25,7 +25,7 @@ async function AuthenticateUser(email, password){
       const userCheck = await User.findOne({ email:email });
       
       const validPassword = await bcrypt.compare(password,userCheck.password);
-      
+      console.log(password,userCheck.password)
       if(validPassword){
            const token = jwt.sign({email},process.env.login_secret_token);
            const response = {

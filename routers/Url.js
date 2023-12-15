@@ -11,10 +11,10 @@ router.post('/urls', async (req, res) => {
     
     const url = new Url({ shortener, shortId:shortId, userId: req.user._id });
     await url.save();
-    const longUrl = await Url.findOne(   {shortId: shortId}  ); 
+    
     const dailyCount = await calculateDailyCountAndSave(); 
     const monthlyCount = await calculateMonthlyCount(); 
-    const shortUrl = `https://urlshort-zsjx.onrender.com/shorturlRedirect/${shortId}`; 
+    const shortUrl = `https://657c1f3460942053ef29b06e--poetic-pasca-925a80.netlify.app/shorturlRedirect/${shortId}`; 
     res.json({ shortUrl, dailyCount,monthlyCount });
   } catch (error) {
     res.status(400).send(error);
@@ -33,7 +33,7 @@ router.get('/publicurl', async (req, res) => {
     // Retrieve all URLs from the database and populate user information (name and email)
     const longUrls = await Url.find().populate("userId", "name email joinedOn");
 
-    
+    console.log(longUrls)
 
     // Respond with the JSON containing the retrieved long URLs and associated user information
     res.json( {longUrls} );
