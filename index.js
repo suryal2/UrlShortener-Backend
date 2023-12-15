@@ -30,13 +30,9 @@ app.use("/Url",isAuthorized,  urlRouter );
 app.use("/shorturlRedirect" ,  shorturlRedirectRouter );
 
 
-// Wildcard route for client-side routing
-app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "path-to-your-build-folder", "index.html"));
-  });
+ 
+  
 
-  
-  
 app.listen(PORT,()=>{
     console.log(`App listenings on PORT:${PORT}`);
 }) 
