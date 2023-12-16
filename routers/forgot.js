@@ -22,7 +22,7 @@ console.log("users",user)
      const token = jwt.sign({id: user._id},process.env.forgot_secret_token)
 
     const update = await User.findOneAndUpdate({email: user.email}, {$set: { token:token }},{new:true});
-       const resetLink = `https://657d7a8dfcc4911c93016f6a--poetic-pasca-925a80.netlify.app/forgot/reset-password/${user._id}/${token}`;
+       const resetLink = `https://657d7d6158f3e61fa695b928--poetic-pasca-925a80.netlify.app/forgot/reset-password/${user._id}/${token}`;
 
      const content = `${resetLink}`
      sendMail(email,"Reset your password",content)
