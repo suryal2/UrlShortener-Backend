@@ -7,15 +7,18 @@ const router = express.Router();
 router.post('/urls', async (req, res) => {
   try {  
     const { shortener } = req.body; 
-    const shortId =shortid.generate();
+    if(shortener){
+      const shortId =shortid.generate(); 
+      const url = new Url({ shortener, shortId:shortId, userId: req.user._id });
+      await url.save(); 
+      const dailyCount = await calculateDailyCountAndSave(); 
+      const monthlyCount = await calculateMonthlyCount(); 
+      const shortUrl = `https://urlshort-zsjx.onrender.com/shorturlRedirect/${shortId}`; 
+      res.json({ shortUrl, dailyCount,monthlyCount });
+    } else{
+      res.status(200).send("clint error");
+    }
     
-    const url = new Url({ shortener, shortId:shortId, userId: req.user._id });
-    await url.save();
-    
-    const dailyCount = await calculateDailyCountAndSave(); 
-    const monthlyCount = await calculateMonthlyCount(); 
-    const shortUrl = `https://urlshort-zsjx.onrender.com/shorturlRedirect/${shortId}`; 
-    res.json({ shortUrl, dailyCount,monthlyCount });
   } catch (error) {
     res.status(400).send(error);
   }  
