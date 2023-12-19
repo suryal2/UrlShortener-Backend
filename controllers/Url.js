@@ -1,6 +1,6 @@
 const  Url = require("../models/Url");
 const mongoose = require("mongoose");
- 
+const shortid = require('shortid');
 
 const calculateDailyCountAndSave = async () => {
     try {
@@ -38,4 +38,31 @@ const calculateMonthlyCount = async () => {
     }
 }
 
-module.exports = { calculateDailyCountAndSave, calculateMonthlyCount };
+const updateNotes = (shortener,id) => {
+  
+        const shortId = shortid.generate();
+        console.log("short:", shortId);
+        return Url.findOneAndUpdate(
+          { _id: id },
+          
+          {
+            $set: {
+              shortener: shortener,
+              shortId: shortId,
+            },
+          },
+          { new: true }
+        );
+    
+      
+     
+  };
+
+  function deletedNotes(req){
+    return Url.findByIdAndDelete({
+        _id: req.params.id,
+    });
+}
+  
+
+module.exports = { calculateDailyCountAndSave, calculateMonthlyCount, updateNotes, deletedNotes };

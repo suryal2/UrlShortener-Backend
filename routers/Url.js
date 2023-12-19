@@ -1,7 +1,7 @@
 const express = require('express');
 const shortid = require('shortid');
 const Url = require("../models/Url");
-const {  calculateDailyCountAndSave, calculateMonthlyCount } = require("../controllers/Url"); 
+const {  calculateDailyCountAndSave, calculateMonthlyCount, updateNotes, deletedNotes } = require("../controllers/Url"); 
 const router = express.Router();
  
 router.post('/urls', async (req, res) => {
@@ -47,9 +47,50 @@ router.get('/publicurl', async (req, res) => {
   }
 });
 
+//edit for user
+
+router.put("/user/edit/:id", async (req, res) => {
+  const { shortener } = req.body;
+  const id = req.params.id;
+
+  if (shortener.trim() === '') {
+    return res.status(200).json( "connot contain only spaces" );
+  }
+else if(shortener){
+  const editNotes = await updateNotes(shortener, id);
+  console.log(editNotes)
+    if (!editNotes) {
+     return res.status(200).send("clint error");
+    }
+  
+    res.status(200).json({
+      message: "Successfully updated",
+      data: editNotes,
+    });
+}
+ 
+});
 
 
 
+
+//delet user notes
+router.delete("/user/delete/:id",async (req,res) =>{
+  try{
+     const deletedNote = await deletedNotes(req);
+     if(!deletedNote){
+      return res.status(400).json({
+          error: "Error Occured while deleting"
+  });
+  }
+  res.status(201).json({
+      message: "successfully deleted",
+     });
+  } catch (error) {
+      console.log(error);
+      res.status(500).json({error:"Internal Server"});
+  }
+});
 
 
 

@@ -5,6 +5,9 @@ const loginRouter = require("./routers/login");
 const homeRouter = require("./routers/home");
 const forgotRouter = require("./routers/forgot");
 const urlRouter = require("./routers/Url");
+// const urlEADRouter = require("./routers/urlEAD");
+ 
+
 const shorturlRedirectRouter = require("./routers/shorturlRedirect"); 
 const { isAuthorized } = require("./middlewares/auth");
 
@@ -28,7 +31,7 @@ app.use("/home",homeRouter);
 app.use("/forgot",forgotRouter);
 app.use("/Url",isAuthorized,  urlRouter );
 app.use("/shorturlRedirect" ,  shorturlRedirectRouter );
-
+// app.use("/urlEAD", urlEADRouter);
 
  
   

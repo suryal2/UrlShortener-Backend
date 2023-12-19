@@ -7,7 +7,7 @@ const isAuthorized = async (req,res,next) => {
   if(req.headers) {
       try{
           token = await req.headers["x-auth-token"];
-          console.log("auth",token)
+          // console.log("auth:",token)
           const decoded = jwt.verify(token, process.env.login_secret_token,{ complete: true });
          
       
