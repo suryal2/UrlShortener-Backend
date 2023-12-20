@@ -58,7 +58,9 @@ async function AuthorizeUser(token){
     if(decodedToken) {
       const email = decodedToken.email;
       
-      
+      console.log(email);
+      const auth = await client.get(`key-${email}`);
+      console.log(auth);
       
        if (auth){
         const data = JSON.parse(auth)
