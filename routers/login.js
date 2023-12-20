@@ -7,7 +7,7 @@ const router = express.Router();
 client
 .connect()
 .then(()=>{
-   console.log("connected to radis in login");
+   console.log("connected to radisl in login");
 })
 .catch((e)=>{
    console.log(e);
