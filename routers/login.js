@@ -1,7 +1,7 @@
 const express = require("express");
 const { AuthenticateUser, CheckUser } = require("../controllers/login");
  
-const client = require("../radis");
+const client = require("../radisl");
 const router = express.Router();
 
 client

@@ -1,7 +1,7 @@
 const  User = require("../models/User");
 const bcrypt = require("bcrypt");
 const dotenv = require("dotenv");
-const client = require("../radis");
+const client = require("../radisl");
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 dotenv.config();
