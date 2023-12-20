@@ -1,7 +1,7 @@
 const  User = require("../models/User");
 const bcrypt = require("bcrypt");
 const dotenv = require("dotenv");
- 
+const client = require("../radis");
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 dotenv.config();
@@ -36,6 +36,7 @@ async function AuthenticateUser(email, password){
             status:true
            };
             
+           await client.set(`key-${email}`,JSON.stringify(response))
 
            await User.findOneAndUpdate({email: userCheck.email},{$set: { token:token }},{new:true});
             return response
@@ -59,7 +60,12 @@ async function AuthorizeUser(token){
       
       
       
-      if (email){
+       if (auth){
+        const data = JSON.parse(auth)
+         
+        return data 
+        
+      } else {
         const data = await User.findOne({email: email})
         return data
       }
