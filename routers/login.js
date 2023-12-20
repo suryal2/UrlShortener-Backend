@@ -1,10 +1,17 @@
 const express = require("express");
 const { AuthenticateUser, CheckUser } = require("../controllers/login");
- 
+const client = require("../radisUrl");
  
 const router = express.Router();
  
-
+client
+.connect()
+.then(()=>{
+   console.log("connected to radisUrl in login");
+})
+.catch((e)=>{
+   console.log(e);
+});
 
 
 router.post("/", async (req,res)=>{
